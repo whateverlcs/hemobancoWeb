@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetoHemobancoWeb.Models;
 
 namespace ProjetoHemobancoWeb.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20201123175957_RemoveCampoObrigatorioFunc")]
+    partial class RemoveCampoObrigatorioFunc
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,7 +31,7 @@ namespace ProjetoHemobancoWeb.Migrations
                     b.Property<DateTime>("CriadoEm")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DoadorId")
+                    b.Property<int>("DoadorId")
                         .HasColumnType("int");
 
                     b.Property<int>("QuantidadeSangue")
@@ -102,7 +104,7 @@ namespace ProjetoHemobancoWeb.Migrations
                     b.Property<DateTime>("CriadoEm")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("FuncionarioId")
+                    b.Property<int>("FuncionarioId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantidade")
@@ -135,14 +137,12 @@ namespace ProjetoHemobancoWeb.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Cpf")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CriadoEm")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
@@ -164,7 +164,7 @@ namespace ProjetoHemobancoWeb.Migrations
                     b.Property<DateTime>("CriadoEm")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("FuncionarioId")
+                    b.Property<int>("FuncionarioId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantidade")
@@ -203,7 +203,9 @@ namespace ProjetoHemobancoWeb.Migrations
                 {
                     b.HasOne("ProjetoHemobancoWeb.Models.Doador", "Doador")
                         .WithMany()
-                        .HasForeignKey("DoadorId");
+                        .HasForeignKey("DoadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("ProjetoHemobancoWeb.Models.Sangue", "Sangue")
                         .WithMany()
@@ -216,7 +218,9 @@ namespace ProjetoHemobancoWeb.Migrations
                 {
                     b.HasOne("ProjetoHemobancoWeb.Models.Funcionario", "Funcionario")
                         .WithMany()
-                        .HasForeignKey("FuncionarioId");
+                        .HasForeignKey("FuncionarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("ProjetoHemobancoWeb.Models.Sangue", "Sangue")
                         .WithMany()
@@ -229,7 +233,9 @@ namespace ProjetoHemobancoWeb.Migrations
                 {
                     b.HasOne("ProjetoHemobancoWeb.Models.Funcionario", "Funcionario")
                         .WithMany()
-                        .HasForeignKey("FuncionarioId");
+                        .HasForeignKey("FuncionarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -22,5 +22,6 @@ namespace ProjetoHemobancoWeb.DAL
         }
         public List<Reserva> Listar() => _context.Reservas.Include(f => f.Funcionario).ToList();
         public Funcionario BuscarPorNome(string nome) => _context.Funcionarios.FirstOrDefault(x => x.Nome == nome);
+        public bool AcharReservaExistente(int id) => _context.Reservas.Any(e => e.Id == id);
     }
 }

@@ -6,11 +6,15 @@
     <title>@ViewBag.Title</title>
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/icone.ico">
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Hemobanco</a>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #eb6864;">
+        <a class="navbar-brand" href="#">
+            <img src="~/images/blood.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+            Hemobanco
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -18,22 +22,22 @@
         <div class="collapse navbar-collapse" id="navbarColor03">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Inicio</a>
+                    <a class="nav-link" asp-controller="Home" asp-action="Index">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Doador</a>
+                    <a class="nav-link" asp-controller="Doador" asp-action="Index">Doador</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Doação</a>
+                    <a class="nav-link" asp-controller="Doacao" asp-action="Index">Doação</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Estoque</a>
+                    <a class="nav-link" asp-controller="Estoque" asp-action="Index">Estoque</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Reserva</a>
+                    <a class="nav-link" asp-controller="Reserva" asp-action="Index">Reserva</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Funcionário</a>
+                    <a class="nav-link" asp-controller="Funcionario" asp-action="Index">Funcionário</a>
                 </li>
             </ul>
         </div>
@@ -44,7 +48,7 @@
     </div>
 
     <hr />
-    <footer class="espacamento-cima">
+    <footer class="espacamento-cima footer">
         <p>Desenvolvido por Bruno Muller, Lucas Batistão e Ramon Kowalski - @DateTime.Now.Year - &copy;</p>
     </footer>
 

@@ -11,23 +11,20 @@ using ProjetoHemobancoWeb.Utils;
 
 namespace ProjetoHemobancoWeb.Controllers
 {
-    public class DoadorController : Controller
+    public class FuncionarioController : Controller
     {
-        private readonly DoadorDAO _doadorDAO;
-        private readonly DoacaoDAO _doacaoDAO;
+        private readonly FuncionarioDAO _funcionarioDAO;
 
-        public DoadorController(DoadorDAO doadorDAO, DoacaoDAO doacaoDAO)
+        public FuncionarioController(FuncionarioDAO funcionarioDAO)
         {
-            _doadorDAO = doadorDAO;
-            _doacaoDAO = doacaoDAO;
+            _funcionarioDAO = funcionarioDAO;
         }
 
         public IActionResult Index()
         {
-            return View(_doadorDAO.Listar());
+            return View(_funcionarioDAO.Listar());
         }
 
-        
         public IActionResult Create()
         {
             return View();
@@ -35,21 +32,21 @@ namespace ProjetoHemobancoWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Nome,Cpf,Idade,Email,Endereco,Telefone,Celular,Id,CriadoEm")] Doador doador)
+        public IActionResult Create([Bind("Nome,Cpf,Email,Id,CriadoEm")] Funcionario funcionario)
         {
             if (ModelState.IsValid)
             {
-                if (Validacao.ValidarCpf(doador.Cpf))
+                if (Validacao.ValidarCpf(funcionario.Cpf))
                 {
-                    if (_doadorDAO.Cadastrar(doador))
+                    if (_funcionarioDAO.Cadastrar(funcionario))
                     {
                         return RedirectToAction(nameof(Index));
                     }
-                    ModelState.AddModelError("", "Esse doador já existe!");
+                    ModelState.AddModelError("", "Esse funcionário já existe!");
                 }
                 ModelState.AddModelError("", "Cpf inválido!");
             }
-            return View(doador);
+            return View(funcionario);
         }
 
         public IActionResult Edit(int? id)
@@ -59,20 +56,19 @@ namespace ProjetoHemobancoWeb.Controllers
                 return NotFound();
             }
 
-            var doador = _doadorDAO.ProcurarPorId(id);
-            if (doador == null)
+            var funcionario = _funcionarioDAO.ProcurarPorId(id);
+            if (funcionario == null)
             {
                 return NotFound();
             }
-            return View(doador);
+            return View(funcionario);
         }
 
-        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Nome,Cpf,Idade,Email,Endereco,Telefone,Celular,Id,CriadoEm")] Doador doador)
+        public IActionResult Edit(int id, [Bind("Nome,Cpf,Email,Id,CriadoEm")] Funcionario funcionario)
         {
-            if (id != doador.Id)
+            if (id != funcionario.Id)
             {
                 return NotFound();
             }
@@ -81,11 +77,11 @@ namespace ProjetoHemobancoWeb.Controllers
             {
                 try
                 {
-                    _doadorDAO.Alterar(doador);
+                    _funcionarioDAO.Alterar(funcionario);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DoadorExists(doador.Id))
+                    if (!FuncionarioExists(funcionario.Id))
                     {
                         return NotFound();
                     }
@@ -96,7 +92,7 @@ namespace ProjetoHemobancoWeb.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(doador);
+            return View(funcionario);
         }
 
         public IActionResult Delete(int? id)
@@ -106,32 +102,27 @@ namespace ProjetoHemobancoWeb.Controllers
                 return NotFound();
             }
 
-            var doador = _doadorDAO.VerificarId(id);
-            if (doador == null)
+            var funcionario = _funcionarioDAO.VerificarId(id);
+            if (funcionario == null)
             {
                 return NotFound();
             }
 
-            return View(doador);
+            return View(funcionario);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            var doador = _doadorDAO.ProcurarPorId(id);
-            Doacao doacao = _doacaoDAO.BuscarPorDoador(doador.Nome); //método para buscar a doação realizada por esse usuário para exclusão
-            if (doacao != null)
-            {
-                _doacaoDAO.Remover(doacao);
-            }
-            _doadorDAO.Remover(doador);
+            var funcionario = _funcionarioDAO.ProcurarPorId(id);
+            _funcionarioDAO.Remover(funcionario);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool DoadorExists(int id)
+        private bool FuncionarioExists(int id)
         {
-            return _doadorDAO.AcharDoadorExistente(id);
+            return _funcionarioDAO.AcharFuncionarioExistente(id);
         }
     }
 }

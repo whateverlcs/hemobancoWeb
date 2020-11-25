@@ -1,1 +1,22 @@
-﻿<h1>HelloWorld</h1>
+﻿@model List<Estoque>
+
+<div class="div-estoque">
+    <h4 class="cor">Situação do Estoque</h4>
+    <span><b class="font-weight-lighter">Atualizado em </b> @ViewBag.Data às @ViewBag.Horario h</span>
+</div>
+
+<div id="produtos" class="row">
+    @foreach (Estoque sanguesEstoque in Model)
+    {
+        <div class="col-sm-3 div-produtos">
+            <img class="img-thumbnail" src="~/images/imagemblood.png" alt="@sanguesEstoque.Sangue.TipoSangue" style="width:120px; height:100px" /><br />
+            <span>@sanguesEstoque.Sangue.TipoSangue</span><br />
+            <span><b class="font-weight-bold">Quantidade(L): </b> @sanguesEstoque.QuantidadeLitros L</span><br />
+        </div>
+    }
+
+</div>
+<div class="div-doacoes">
+    <h4 class="cor">Total de Doações</h4>
+    <p><b>O Hemobanco já coletou </b>@ViewBag.QuantidadeRegistros bolsas de sangue.</p>
+</div>

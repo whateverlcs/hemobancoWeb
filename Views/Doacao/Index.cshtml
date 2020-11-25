@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ProjetoHemobancoWeb.Models.Doacao>
+
+@{
+    ViewData["Title"] = "Doações";
+}
+
+<h1>Doações</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Realizar Doação</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nome do doador
+            </th>
+            <th>
+                Tipo de Sangue
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CriadoEm)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.Doador.Nome
+            </td>
+            <td>
+                @item.Sangue.TipoSangue
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CriadoEm)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

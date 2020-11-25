@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ProjetoHemobancoWeb.DAL
 {
@@ -26,6 +27,9 @@ namespace ProjetoHemobancoWeb.DAL
         }
         public Doador BuscarPorCpf(string cpf) => _context.Doadores.FirstOrDefault(x => x.Cpf == cpf); //método que verifica se existe um doador com esse cpf
         public List<Doador> Listar() => _context.Doadores.ToList();
+        public Doador ProcurarPorId(int? id) => _context.Doadores.Find(id);
+        public Doador VerificarId(int? id) => _context.Doadores.FirstOrDefault(m => m.Id == id);
+        public bool AcharDoadorExistente(int id) => _context.Doadores.Any(e => e.Id == id);
         public void Alterar(Doador doador)
         {
             _context.Doadores.Update(doador);

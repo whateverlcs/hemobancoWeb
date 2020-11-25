@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ProjetoHemobancoWeb.Models.Estoque>
+
+@{
+    ViewData["Title"] = "Estoque";
+}
+
+<h1>Estoque</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Adicionar Estoque</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tipo de Sangue
+            </th>
+            <th>
+                Funcionário
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnidadeMedida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantidadeLitros)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AlteradoEm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CriadoEm)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.Sangue.TipoSangue
+            </td>
+            <td>
+                @item.Funcionario.Nome
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnidadeMedida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantidadeLitros)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AlteradoEm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CriadoEm)
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

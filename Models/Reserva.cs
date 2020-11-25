@@ -16,7 +16,6 @@ namespace ProjetoHemobancoWeb.Models
         [Required(ErrorMessage = "Campo obrigatório!")]
         public int Quantidade { get; set; }
 
-        [Required(ErrorMessage = "Campo obrigatório!")]
         public Funcionario Funcionario { get; set; }
     }
 }

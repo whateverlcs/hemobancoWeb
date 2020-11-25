@@ -1,0 +1,57 @@
+﻿@model ProjetoHemobancoWeb.Models.Estoque
+
+@{
+    ViewData["Title"] = "Excluir";
+}
+
+<h1>Excluir</h1>
+
+<h3>Você tem certeza que deseja deletar esse item do estoque?</h3>
+<div>
+    <h4>Estoque</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Sangue.TipoSangue)
+        </dt>
+        <dt class="col-sm-10">
+            @Html.DisplayNameFor(model => model.Funcionario.Nome)
+        </dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quantidade)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quantidade)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UnidadeMedida)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UnidadeMedida)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.QuantidadeLitros)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.QuantidadeLitros)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AlteradoEm)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AlteradoEm)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CriadoEm)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CriadoEm)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Excluir" class="btn btn-danger" /> |
+        <a asp-action="Index">Voltar para a Lista</a>
+    </form>
+</div>

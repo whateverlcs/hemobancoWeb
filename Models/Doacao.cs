@@ -9,7 +9,6 @@ namespace ProjetoHemobancoWeb.Models
     [Table("Doacao")]
     public class Doacao : BaseModel
     {
-        [Required(ErrorMessage = "Campo obrigatório!")]
         public Doador Doador { get; set; }
 
         [Display(Name = "Quantidade de Sangue")]
@@ -21,7 +20,6 @@ namespace ProjetoHemobancoWeb.Models
 
         public Doacao()
         {
-            Doador = new Doador();
             Sangue = new Sangue();
             QuantidadeSangue = 450;
         }

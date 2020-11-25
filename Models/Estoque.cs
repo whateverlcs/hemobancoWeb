@@ -20,7 +20,6 @@ namespace ProjetoHemobancoWeb.Models
         [Required(ErrorMessage = "Campo obrigatório!")]
         public string UnidadeMedida { get; set; }
 
-        [Required(ErrorMessage = "Campo obrigatório!")]
         public Funcionario Funcionario { get; set; }
 
         [Display(Name = "Quantidade")]
