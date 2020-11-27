@@ -7,7 +7,7 @@
 <h1>Estoque</h1>
 
 <p>
-    <a class="btn btn-primary" asp-action="Create">Adicionar Estoque</a>
+    <a class="btn btn-danger" asp-action="Create">Adicionar Estoque</a>
 </p>
 <table class="table">
     <thead>
@@ -61,7 +61,9 @@
                 @Html.DisplayFor(modelItem => item.CriadoEm)
             </td>
             <td>
-                <a asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+                <a asp-action="Delete" asp-route-id="@item.Id">
+                    <img src="~/images/excluir.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+                </a>
             </td>
         </tr>
 }

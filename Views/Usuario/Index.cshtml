@@ -1,37 +1,36 @@
-﻿@model IEnumerable<ProjetoHemobancoWeb.Models.Doacao>
+﻿@model IEnumerable<ProjetoHemobancoWeb.Models.UsuarioView>
 
 @{
-    ViewData["Title"] = "Doações";
+    ViewData["Title"] = "Usuários";
 }
 
-<h1>Doações</h1>
+<h1>Novos Usuários</h1>
 
 <p>
-    <a class="btn btn-danger" asp-action="Create">Realizar Doação</a>
+    <a class="btn btn-danger" asp-action="Create">Cadastrar Funcionário</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                Nome do doador
+                @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
-                Tipo de Sangue
+                @Html.DisplayNameFor(model => model.Senha)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CriadoEm)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-                @item.Doador.Nome
+                @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @item.Sangue.TipoSangue
+                @Html.DisplayFor(modelItem => item.Senha)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CriadoEm)

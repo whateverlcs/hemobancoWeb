@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ProjetoHemobancoWeb.Models
 {
-    public class Context : DbContext
+    public class Context : IdentityDbContext<Usuario>
     {
         public Context(DbContextOptions options) : base(options) { }
         public DbSet<Sangue> Sangues { get; set; }
@@ -14,6 +15,7 @@ namespace ProjetoHemobancoWeb.Models
         public DbSet<Funcionario> Funcionarios { get; set; }
         public DbSet<Estoque> Estoques { get; set; }
         public DbSet<Reserva> Reservas { get; set; }
+        public DbSet<UsuarioView> Usuarios { get; set; }
 
     }
 }

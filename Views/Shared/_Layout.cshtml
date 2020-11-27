@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<Usuario> SignInManager
+@inject Microsoft.AspNetCore.Identity.UserManager<Usuario> UserManager
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -11,7 +13,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #eb6864;">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" asp-controller="Home" asp-action="Index">
             <img src="~/images/blood.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
             Hemobanco
         </a>
@@ -24,21 +26,54 @@
                 <li class="nav-item">
                     <a class="nav-link" asp-controller="Home" asp-action="Index">Inicio</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Doador" asp-action="Index">Doador</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Doacao" asp-action="Index">Doação</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Estoque" asp-action="Index">Estoque</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Reserva" asp-action="Index">Reserva</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Funcionario" asp-action="Index">Funcionário</a>
-                </li>
+                @if (User.IsInRole("Administrador") || User.IsInRole("Funcionario"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Doador" asp-action="Index">Doador</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Doacao" asp-action="Index">Doação</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Estoque" asp-action="Index">Estoque</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Reserva" asp-action="Index">Reserva</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Funcionario" asp-action="Index">Funcionário</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Usuario" asp-action="Index">Usuários</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">Contato</a>
+                    </li>
+                }
+            </ul>
+            <ul class="navbar-nav ml-auto">
+
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-action="Logout" asp-controller="Usuario">
+                            <img src="~/images/logout.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+                            Logout
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-action="Login" asp-controller="Usuario">
+                            <img src="~/images/login.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+                            Login</a>
+                    </li>
+                }
+
             </ul>
         </div>
     </nav>
