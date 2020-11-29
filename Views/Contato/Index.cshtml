@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "Contato";
+}
+
+            <form asp-action="Index">
+                <div class="form-group">
+                    <label for="Nome" class="control-label">Nome</label>
+                    <input type="text" name="Nome" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="Assunto" class="control-label">Assunto</label>
+                    <input type="text" name="Assunto" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="Email" class="control-label">Email</label>
+                    <input type="text" name="Email" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="Mensagem" class="control-label">Mensagem</label>
+                    <input type="text" name="Mensagem" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Enviar" class="btn btn-danger" />
+                </div>
+                <label>@ViewBag.lblMensagem</label>
+            </form>
