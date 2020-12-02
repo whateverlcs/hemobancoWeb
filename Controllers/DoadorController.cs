@@ -37,7 +37,7 @@ namespace ProjetoHemobancoWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Nome,Cpf,Idade,Email,Endereco,Telefone,Celular,Id,CriadoEm")] Doador doador)
+        public IActionResult Create([Bind("Nome,Cpf,Idade,Email,Cep,Logradouro,Bairro,Localidade,Uf,Telefone,Celular,Id,CriadoEm")] Doador doador)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +72,7 @@ namespace ProjetoHemobancoWeb.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Nome,Cpf,Idade,Email,Endereco,Telefone,Celular,Id,CriadoEm")] Doador doador)
+        public IActionResult Edit(int id, [Bind("Nome,Cpf,Idade,Email,Cep,Logradouro,Bairro,Localidade,Uf,Telefone,Celular,Id,CriadoEm")] Doador doador)
         {
             if (id != doador.Id)
             {

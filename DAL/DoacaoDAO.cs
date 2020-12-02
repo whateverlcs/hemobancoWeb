@@ -41,7 +41,7 @@ namespace ProjetoHemobancoWeb.DAL
         }
         public List<Doacao> BuscarTodasAsDoaçõesPorNome(string nome) => _context.Doacoes.Where(x => x.Doador.Nome.Equals(nome)).ToList(); //verifica se existem doações com esse doador
         public Doacao ProcurarPorId(int? id) => _context.Doacoes.Find(id);
-        public Doacao VerificarId(int? id) => _context.Doacoes.FirstOrDefault(m => m.Id == id);
+        public Doacao VerificarId(int? id) => _context.Doacoes.Include(s => s.Sangue).Include(d => d.Doador).FirstOrDefault(m => m.Id == id);
         public bool AcharDoacaoExistente(int id) => _context.Doacoes.Any(e => e.Id == id);
         public void Remover(Doacao doacao)
         {

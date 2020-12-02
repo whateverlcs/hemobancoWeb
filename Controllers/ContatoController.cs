@@ -22,7 +22,7 @@ namespace ProjetoHemobancoWeb.Controllers
             MailMessage message = new MailMessage();
             SmtpClient smtp = new SmtpClient();
             message.From = new MailAddress(Email);
-            message.To.Add(new MailAddress("seuemailaqui@gmail.com"));  //para qual email será enviado
+            message.To.Add(new MailAddress("seuemail@gmail.com")); //email para o qual deseja enviar
             message.Subject = "Cliente: " + Nome + " - " + "Assunto:" + Assunto;
             message.IsBodyHtml = true; //to make message body as html  
             message.Body = "Email: " + Email + "\n" + "Mensagem:" + Mensagem;
@@ -30,7 +30,7 @@ namespace ProjetoHemobancoWeb.Controllers
             smtp.Host = "smtp.gmail.com"; //for gmail host  
             smtp.EnableSsl = true;
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("seuemailaqui@gmail.com", "suasenhaaqui");  //login e senha do seu email para aplicação enviar o email (precisa ser uma conta que permita aplicativos de terceiros usarem e sem autenticação de 2 fatores)
+            smtp.Credentials = new NetworkCredential("seuemail@gmail.com", "suasenha"); //login e senha do seu email para aplicação enviar o email (precisa ser uma conta que permita aplicativos de terceiros usarem e sem autenticação de 2 fatores)
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
 
             try

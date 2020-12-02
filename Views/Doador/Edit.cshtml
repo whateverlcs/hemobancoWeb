@@ -12,45 +12,66 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Cpf" class="control-label"></label>
-                <input asp-for="Cpf" class="form-control" />
-                <span asp-validation-for="Cpf" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Idade" class="control-label"></label>
-                <input asp-for="Idade" class="form-control" />
-                <span asp-validation-for="Idade" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Endereco" class="control-label"></label>
-                <input asp-for="Endereco" class="form-control" />
-                <span asp-validation-for="Endereco" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Telefone" class="control-label"></label>
-                <input asp-for="Telefone" class="form-control" />
-                <span asp-validation-for="Telefone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Celular" class="control-label"></label>
-                <input asp-for="Celular" class="form-control" />
-                <span asp-validation-for="Celular" class="text-danger"></span>
-            </div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <input type="submit" value="Editar" class="btn btn-danger" />
-            </div>
+            <fieldset>
+                <legend>Dados de Endereço</legend>
+                <div class="form-group">
+                    <label asp-for="Cep" class="control-label"></label>
+                    <input asp-for="Cep" id="cep" onblur="BuscarCep()" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Logradouro" class="control-label"></label>
+                    <input asp-for="Logradouro" readonly id="logradouro" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Bairro" class="control-label"></label>
+                    <input asp-for="Bairro" readonly id="bairro" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Localidade" class="control-label"></label>
+                    <input asp-for="Localidade" readonly id="localidade" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Uf" class="control-label"></label>
+                    <input asp-for="Uf" readonly id="uf" class="form-control" />
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Dados Pessoais</legend>
+                <div class="form-group">
+                    <label asp-for="Nome" class="control-label"></label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Cpf" class="control-label"></label>
+                    <input asp-for="Cpf" class="form-control" />
+                    <span asp-validation-for="Cpf" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Idade" class="control-label"></label>
+                    <input asp-for="Idade" class="form-control" />
+                    <span asp-validation-for="Idade" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Telefone" class="control-label"></label>
+                    <input asp-for="Telefone" class="form-control" />
+                    <span asp-validation-for="Telefone" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Celular" class="control-label"></label>
+                    <input asp-for="Celular" class="form-control" />
+                    <span asp-validation-for="Celular" class="text-danger"></span>
+                </div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <input type="submit" value="Editar" class="btn btn-danger" />
+                </div>
+            </fieldset>
         </form>
     </div>
 </div>
@@ -58,4 +79,26 @@
 <div style="margin-top: 10px;">
     <a class="btn btn-danger" asp-action="Index">← Voltar</a>
 </div>
+
+<script>
+    var txtCep = document.getElementById("cep");
+    var txtLogradouro = document.getElementById("logradouro");
+    var txtBairro = document.getElementById("bairro");
+    var txtLocalidade = document.getElementById("localidade");
+    var txtUf = document.getElementById("uf");
+
+    function BuscarCep() {
+        var url = `https://webmaniabr.com/api/1/cep/${txtCep.value}/?app_key=FSVQPVfu2hYPXjKAYWKnnf3CPseuhZ0Q&app_secret=CM0MSvDsEvfjVjE6GxUd1AJTjK24qG4ro4YaM4s0MbdptuTb`;
+        fetch(url, { method: "GET" })
+            .then(response => response.json())
+            .then(json => {
+                txtLogradouro.value = json.logradouro;
+                txtLocalidade.value = json.localidade;
+                txtBairro.value = json.bairro;
+                txtUf.value = json.uf;
+            })
+            .catch(error => console.log(error));
+    }
+
+</script>
 

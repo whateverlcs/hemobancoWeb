@@ -22,7 +22,7 @@ namespace ProjetoHemobancoWeb.DAL
         }
         public List<Estoque> Listar() => _context.Estoques.Include(s => s.Sangue).Include(f => f.Funcionario).ToList();
         public Estoque ProcurarPorId(int? id) => _context.Estoques.Find(id);
-        public Estoque VerificarId(int? id) => _context.Estoques.FirstOrDefault(m => m.Id == id);
+        public Estoque VerificarId(int? id) => _context.Estoques.Include(s => s.Sangue).Include(f => f.Funcionario).FirstOrDefault(m => m.Id == id);
         public bool AcharEstoqueExistente(int id) => _context.Estoques.Any(e => e.Id == id);
         public Funcionario BuscarPorNome(string nome) => _context.Funcionarios.FirstOrDefault(x => x.Nome == nome);
         public Estoque BuscarPorTipoSangue(string tipoSangue) => _context.Estoques.FirstOrDefault(x => x.Sangue.TipoSangue == tipoSangue);

@@ -21,9 +21,25 @@ namespace ProjetoHemobancoWeb.Models
         [Required(ErrorMessage = "Campo obrigatório!")]
         public string Email { get; set; }
 
-        [Display(Name = "Endereço")]
+        [Display(Name = "CEP:")]
         [Required(ErrorMessage = "Campo obrigatório!")]
-        public string Endereco { get; set; }
+        public string Cep { get; set; }
+
+        [Display(Name = "Rua:")]
+        [Required(ErrorMessage = "Campo obrigatório!")]
+        public string Logradouro { get; set; }
+
+        [Display(Name = "Bairro:")]
+        [Required(ErrorMessage = "Campo obrigatório!")]
+        public string Bairro { get; set; }
+
+        [Display(Name = "Cidade:")]
+        [Required(ErrorMessage = "Campo obrigatório!")]
+        public string Localidade { get; set; }
+
+        [Display(Name = "Estado:")]
+        [Required(ErrorMessage = "Campo obrigatório!")]
+        public string Uf { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório!")]
         public string Telefone { get; set; }
